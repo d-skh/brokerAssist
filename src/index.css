@@ -1,68 +1,376 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* ===== APPLE-STYLE GLOBAL DESIGN ===== */
+/* Все стили применяются автоматически ко всем компонентам */
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', 
+    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #f5f7fa 0%, #f8f9fc 100%);
+  color: #1d1d1f;
+}
+
+#root {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ===== MUI DRAWER (Сайдбар) ===== */
+.MuiDrawer-paper {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: none !important;
+}
+
+.MuiDrawer-paper .MuiListItemButton-root {
+  border-radius: 12px !important;
+  margin: 4px 12px !important;
+  transition: all 0.2s ease !important;
+}
+
+.MuiDrawer-paper .MuiListItemButton-root:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  transform: translateX(4px);
+}
+
+.MuiDrawer-paper .MuiListItemButton-root.Mui-selected {
+  background: rgba(0, 113, 227, 0.1) !important;
+  color: #0071e3 !important;
+}
+
+.MuiDrawer-paper .MuiListItemIcon-root {
+  color: inherit !important;
+  min-width: 40px !important;
+}
+
+/* ===== MUI APP BAR (Тулкит) ===== */
+.MuiAppBar-root {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+  color: #1d1d1f !important;
+}
+
+.MuiAppBar-root .MuiTypography-root {
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.MuiAppBar-root .MuiButton-root {
+  color: #1d1d1f !important;
+  border-radius: 12px !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+.MuiAppBar-root .MuiButton-root:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.MuiAppBar-root .MuiIconButton-root {
+  color: #1d1d1f !important;
+}
+
+/* ===== MUI CARDS ===== */
+.MuiCard-root {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.MuiCard-root:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+.MuiCardContent-root {
+  padding: 24px !important;
+}
+
+/* ===== MUI BUTTONS ===== */
+.MuiButton-root {
+  border-radius: 12px !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  font-size: 17px !important;
+  padding: 8px 24px !important;
+  transition: all 0.2s ease !important;
+}
+
+.MuiButton-contained {
+  background: #0071e3 !important;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2) !important;
+}
+
+.MuiButton-contained:hover {
+  background: #0077ed !important;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3) !important;
+}
+
+.MuiButton-outlined {
+  border-color: #0071e3 !important;
+  color: #0071e3 !important;
+}
+
+.MuiButton-outlined:hover {
+  background: rgba(0, 113, 227, 0.05) !important;
+  transform: scale(1.02);
+}
+
+.MuiButton-root:active {
+  transform: scale(0.98);
+}
+
+/* ===== MUI TEXT FIELD ===== */
+.MuiTextField-root .MuiOutlinedInput-root {
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  transition: all 0.2s ease !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 113, 227, 0.5) !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #0071e3 !important;
+  border-width: 1px !important;
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1) !important;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: #0071e3 !important;
+}
+
+/* ===== MUI CHIPS ===== */
+.MuiChip-root {
+  border-radius: 20px !important;
+  background: rgba(0, 0, 0, 0.05) !important;
+  font-weight: 500 !important;
+}
+
+.MuiChip-root.MuiChip-colorPrimary {
+  background: rgba(0, 113, 227, 0.1) !important;
+  color: #0071e3 !important;
+}
+
+.MuiChip-root.MuiChip-colorSecondary {
+  background: rgba(220, 0, 78, 0.1) !important;
+  color: #dc004e !important;
+}
+
+/* ===== MUI PAPER ===== */
+.MuiPaper-root {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* ===== MUI LIST ===== */
+.MuiListItem-root {
+  border-radius: 12px !important;
+  margin: 2px 0 !important;
+}
+
+.MuiListItemButton-root {
+  border-radius: 12px !important;
+  transition: all 0.2s ease !important;
+}
+
+.MuiListItemButton-root:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ===== MUI TYPOGRAPHY ===== */
+.MuiTypography-h1, 
+.MuiTypography-h2, 
+.MuiTypography-h3 {
+  font-weight: 600 !important;
+  letter-spacing: -0.003em !important;
+  background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.MuiTypography-h4, 
+.MuiTypography-h5, 
+.MuiTypography-h6 {
+  font-weight: 600 !important;
+  letter-spacing: -0.002em !important;
+  color: #1d1d1f !important;
+}
+
+.MuiTypography-body1 {
+  font-size: 17px !important;
+  line-height: 1.47059 !important;
+  color: #1d1d1f !important;
+}
+
+.MuiTypography-body2 {
+  font-size: 14px !important;
+  line-height: 1.42859 !important;
+  color: #6e6e73 !important;
+}
+
+/* ===== MUI DIVIDER ===== */
+.MuiDivider-root {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ===== MUI ALERT ===== */
+.MuiAlert-root {
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.MuiAlert-standardInfo {
+  background: rgba(0, 113, 227, 0.1) !important;
+  color: #0071e3 !important;
+}
+
+.MuiAlert-standardWarning {
+  background: rgba(255, 149, 0, 0.1) !important;
+  color: #ff9500 !important;
+}
+
+.MuiAlert-standardSuccess {
+  background: rgba(52, 199, 89, 0.1) !important;
+  color: #34c759 !important;
+}
+
+/* ===== MUI STEPPER ===== */
+.MuiStepLabel-root .MuiStepLabel-label {
+  font-weight: 500 !important;
+  color: #1d1d1f !important;
+}
+
+.MuiStepIcon-root.MuiStepIcon-active {
+  color: #0071e3 !important;
+}
+
+.MuiStepIcon-root.MuiStepIcon-completed {
+  color: #34c759 !important;
+}
+
+/* ===== MUI BADGE ===== */
+.MuiBadge-badge {
+  background: #ff3b30 !important;
+  color: white !important;
+}
+
+/* ===== MUI ICON BUTTON ===== */
+.MuiIconButton-root {
+  transition: all 0.2s ease !important;
+  border-radius: 12px !important;
+}
+
+.MuiIconButton-root:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  transform: scale(1.05);
+}
+
+/* ===== MUI AVATAR ===== */
+.MuiAvatar-root {
+  background: linear-gradient(135deg, #0071e3 0%, #005bb5 100%) !important;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2) !important;
+}
+
+/* ===== MUI CONTAINER ===== */
+.MuiContainer-root {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  a:hover {
-    color: #747bff;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== GRID ITEMS ANIMATION ===== */
+.MuiGrid-item {
+  animation: fadeInUp 0.5s ease-out;
+  animation-fill-mode: backwards;
+}
+
+.MuiGrid-item:nth-child(1) { animation-delay: 0.05s; }
+.MuiGrid-item:nth-child(2) { animation-delay: 0.1s; }
+.MuiGrid-item:nth-child(3) { animation-delay: 0.15s; }
+.MuiGrid-item:nth-child(4) { animation-delay: 0.2s; }
+.MuiGrid-item:nth-child(5) { animation-delay: 0.25s; }
+.MuiGrid-item:nth-child(6) { animation-delay: 0.3s; }
+
+/* ===== LINK STYLES ===== */
+a {
+  text-decoration: none;
+  color: #0071e3;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #005bb5;
+}
+
+/* ===== SELECTION STYLES ===== */
+::selection {
+  background: rgba(0, 113, 227, 0.2);
+  color: #0071e3;
 }
