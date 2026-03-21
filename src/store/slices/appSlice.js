@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  sidebarOpen: false, // по умолчанию закрыт
+  sidebarOpen: false, // по умолчанию закрыт на всех устройствах
   currentPage: 'features',
   user: null,
   notifications: [],
@@ -29,11 +29,6 @@ const appSlice = createSlice({
     clearNotifications: (state) => {
       state.notifications = []
     },
-    removeNotification: (state, action) => {
-      state.notifications = state.notifications.filter(
-        (notification) => notification.id !== action.payload
-      )
-    },
   },
 })
 
@@ -44,7 +39,6 @@ export const {
   setUser,
   addNotification,
   clearNotifications,
-  removeNotification,
 } = appSlice.actions
 
 export default appSlice.reducer

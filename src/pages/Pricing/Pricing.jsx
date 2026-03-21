@@ -84,7 +84,9 @@ const Pricing = () => {
                 ...(plan.recommended && {
                   border: '2px solid',
                   borderColor: 'primary.main',
+                  mt: 2, // Добавляем отступ сверху для карточки с рекомендацией
                 }),
+                overflow: 'visible', // Убираем обрезание содержимого
               }}
             >
               {plan.recommended && (
@@ -94,12 +96,13 @@ const Pricing = () => {
                   color="primary"
                   sx={{
                     position: 'absolute',
-                    top: -12,
+                    top: -16, // Поднимаем выше, чтобы свисал над карточкой
                     right: 20,
+                    zIndex: 1, // Убеждаемся, что чип поверх остальных элементов
                   }}
                 />
               )}
-              <CardContent sx={{ flexGrow: 1 }}>
+              <CardContent sx={{ flexGrow: 1, pt: plan.recommended ? 3 : 2 }}>
                 <Typography variant="h5" component="h2" gutterBottom>
                   {plan.name}
                 </Typography>

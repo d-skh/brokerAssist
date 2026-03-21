@@ -1,25 +1,30 @@
-import { Box } from '@mui/material'
+import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { useSelector } from 'react-redux'
-import Navbar from '../Navbar/Navbar'
 import Sidebar from '../Sidebar/Sidebar'
-import './Layout.css'
+import NavbarMobile from '../NavbarMobile/NavbarMobile'
+import MobileDrawer from '../MobileDrawer/MobileDrawer'
 
 const Layout = ({ children }) => {
   const sidebarOpen = useSelector((state) => state.app.sidebarOpen)
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-      <Navbar />
-      <Sidebar />
+      {!isMobile && <Sidebar />}
+      {isMobile && <NavbarMobile />}
+      {isMobile && <MobileDrawer />}
+      
       <Box
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
-          marginTop: '64px',
-          transition: 'margin-left 0.3s ease-in-out',
-          backgroundColor: '#f5f5f5',
-          width: '100%',
+          marginLeft: !isMobile ? (sidebarOpen ? '292px' : '92px') : 0,
+          marginTop: isMobile ? '64px' : 0,
+          transition: 'margin-left 0.3s ease',
+          backgroundColor: '#f5f7fa',
+          minHeight: '100vh',
+          p: { xs: 2, md: 3 },
         }}
       >
         {children}

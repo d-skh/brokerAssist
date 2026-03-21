@@ -374,3 +374,14 @@ a:hover {
   background: rgba(0, 113, 227, 0.2);
   color: #0071e3;
 }
+
+/* Content spacing */
+main {
+  padding: 32px;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 16px;
+  }
+}

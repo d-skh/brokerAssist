@@ -7,22 +7,19 @@ import Features from './pages/Features/Features'
 import Developers from './pages/Developers/Developers'
 import Installation from './pages/Installation/Installation'
 import Support from './pages/Support/Support'
-import { AnimatePresence } from 'framer-motion' // опционально, для анимаций
+import Roadmap from './pages/Roadmap/Roadmap'
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2',
+      main: '#0071e3',
     },
     secondary: {
       main: '#dc004e',
     },
   },
-  transitions: {
-    duration: {
-      enteringScreen: 300,
-      leavingScreen: 300,
-    },
+  typography: {
+    fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif',
   },
 })
 
@@ -36,6 +33,7 @@ function App() {
             <Route path="/" element={<Features />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/features" element={<Features />} />
+            <Route path="/roadmap" element={<Roadmap />} />
             <Route path="/developers" element={<Developers />} />
             <Route path="/installation" element={<Installation />} />
             <Route path="/support" element={<Support />} />
