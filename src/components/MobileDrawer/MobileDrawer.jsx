@@ -11,7 +11,7 @@ import InstallDesktopIcon from '@mui/icons-material/InstallDesktop'
 import SupportAgentIcon from '@mui/icons-material/SupportAgent'
 
 const menuItems = [
-  { text: 'Возможности', icon: <ExtensionIcon />, path: '/features' },
+  { text: 'Возможности', icon: <ExtensionIcon />, path: '/brokerAssist' },
   { text: 'Тарифы', icon: <AttachMoneyIcon />, path: '/pricing' },
   { text: 'Дорожная карта', icon: <MapIcon />, path: '/roadmap' },
   { text: 'Разработчики', icon: <PeopleIcon />, path: '/developers' },

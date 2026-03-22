@@ -32,7 +32,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Features />} />
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/features" element={<Features />} />
+            <Route path="/brokerAssist" element={<Features />} />
             <Route path="/roadmap" element={<Roadmap />} />
             <Route path="/developers" element={<Developers />} />
             <Route path="/installation" element={<Installation />} />
