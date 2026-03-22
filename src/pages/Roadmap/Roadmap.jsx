@@ -203,7 +203,7 @@ const Roadmap = () => {
                   </Box>
                   <Grid container spacing={2}>
                     {quarter.items.map((item, itemIndex) => (
-                      <Grid item xs={12} sm={6} key={itemIndex}>
+                      <Grid item xs={12} sm={6} md={12} lg={6} key={itemIndex}>
                         <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                           <Box sx={{ color: item.completed ? '#34c759' : '#8e8e93' }}>
                             {item.completed ? <CheckCircleIcon /> : item.icon}

@@ -14,7 +14,7 @@ import SupportAgentIcon from '@mui/icons-material/SupportAgent'
 const menuItems = [
   { text: 'Возможности', icon: <ExtensionIcon />, path: '/features' },
   { text: 'Тарифы', icon: <AttachMoneyIcon />, path: '/pricing' },
-  { text: 'Дорожная карта', icon: <MapIcon />, path: '/roadmap' },
+  { text: 'Роадмап', icon: <MapIcon />, path: '/roadmap' },
   { text: 'Разработчики', icon: <PeopleIcon />, path: '/developers' },
   { text: 'Установка', icon: <InstallDesktopIcon />, path: '/installation' },
   { text: 'Поддержка', icon: <SupportAgentIcon />, path: '/support' },
@@ -49,7 +49,7 @@ const Sidebar = () => {
         top: 12,
         left: 12,
         bottom: 12,
-        width: sidebarOpen ? 280 : 80,
+        width: sidebarOpen ? 280 : 60,
         bgcolor: 'rgba(255,255,255,0.95)',
         backdropFilter: 'blur(20px)',
         transition: 'width 0.3s ease',
@@ -143,7 +143,7 @@ const Sidebar = () => {
           color: '#8e8e93',
         }}
       >
-        {sidebarOpen ? '© 2024 Trading Extension' : '©'}
+        {sidebarOpen ? '© 2026 Trading Extension' : '©'}
       </Box>
     </Box>
   )
