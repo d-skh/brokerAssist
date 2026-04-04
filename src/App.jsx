@@ -8,6 +8,7 @@ import Developers from './pages/Developers/Developers'
 import Installation from './pages/Installation/Installation'
 import Support from './pages/Support/Support'
 import Roadmap from './pages/Roadmap/Roadmap'
+import News from './pages/News/News'
 
 const theme = createTheme({
   palette: {
@@ -33,10 +34,12 @@ function App() {
             <Route path="/" element={<Features />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/brokerAssist" element={<Features />} />
+            <Route path="/features" element={<Features />} />
             <Route path="/roadmap" element={<Roadmap />} />
             <Route path="/developers" element={<Developers />} />
             <Route path="/installation" element={<Installation />} />
             <Route path="/support" element={<Support />} />
+            <Route path="/news" element={<News />} />
           </Routes>
         </Layout>
       </Router>
