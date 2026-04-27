@@ -1,7 +1,7 @@
 import { Container, Grid, Card, CardContent, Avatar, Typography, Box, Chip, Link, IconButton } from '@mui/material'
 import GitHubIcon from '@mui/icons-material/GitHub'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import TelegramIcon from '@mui/icons-material/Telegram'
+import LanguageIcon from '@mui/icons-material/Language'
 import CodeIcon from '@mui/icons-material/Code'
 import BarChartIcon from '@mui/icons-material/BarChart'
 import './Developers.css'
@@ -11,31 +11,42 @@ const developers = [
     name: 'Данила Сухоревский',
     role: 'Программист',
     description: 'Full-stack разработчик с опытом создания высоконагруженных систем. Специализируется на React, Node.js и интеграции с брокерскими API. Отвечает за архитектуру и разработку расширения.',
-    avatar: 'https://via.placeholder.com/150/1976d2/ffffff?text=DS',
     icon: <CodeIcon />,
     skills: ['React', 'TypeScript', 'Node.js', 'Python', 'WebSocket'],
     contacts: {
-      github: 'https://github.com/danila',
-      telegram: 'https://t.me/danila',
-      linkedin: 'https://linkedin.com/in/danila',
+      github: 'https://github.com/d-skh',
+      telegram: 'tg://resolve?domain=d_skh',
+      vk: 'https://vk.com/d_skh',
     },
   },
   {
     name: 'Алексей Булавский',
     role: 'Аналитик и трейдер',
     description: 'Профессиональный трейдер с 10-летним опытом на финансовых рынках. Разрабатывает торговые стратегии и аналитические алгоритмы. Отвечает за функциональность и аналитику расширения.',
-    avatar: 'https://via.placeholder.com/150/dc004e/ffffff?text=AB',
     icon: <BarChartIcon />,
     skills: ['Технический анализ', 'Алгоритмическая торговля', 'Управление рисками', 'Python', 'Data Science'],
     contacts: {
-      github: 'https://github.com/alexey',
-      telegram: 'https://t.me/alexey',
-      linkedin: 'https://linkedin.com/in/alexey',
+      telegram: 'tg://resolve?domain=Alexey_Bulavskiy_is_39',
+      vk: 'https://vk.com/id329161366',
     },
   },
 ]
 
 const Developers = () => {
+  const roleChipSx = {
+    mb: 2,
+    bgcolor: "var(--chip-bg) !important",
+    color: "var(--chip-color) !important",
+    fontWeight: 700,
+    borderRadius: "12px",
+    height: "28px",
+    "& .MuiChip-label": {
+      px: 1.5,
+      color: "var(--chip-color) !important",
+      fontWeight: 700,
+    },
+  }
+
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <Typography variant="h3" component="h1" gutterBottom align="center" sx={{ mb: 2 }}>
@@ -63,13 +74,16 @@ const Developers = () => {
               <CardContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
                   <Avatar
-                    src={dev.avatar}
                     sx={{
                       width: 120,
                       height: 120,
                       mb: 2,
                       bgcolor: index === 0 ? 'primary.main' : 'secondary.main',
                       fontSize: 40,
+                      color: '#ffffff',
+                      '& .MuiSvgIcon-root': {
+                        color: '#ffffff',
+                      },
                     }}
                   >
                     {dev.icon}
@@ -79,8 +93,7 @@ const Developers = () => {
                   </Typography>
                   <Chip
                     label={dev.role}
-                    color={index === 0 ? 'primary' : 'secondary'}
-                    sx={{ mb: 2 }}
+                    sx={roleChipSx}
                   />
                   <Typography variant="body1" align="center" color="text.secondary" paragraph>
                     {dev.description}
@@ -103,30 +116,39 @@ const Developers = () => {
                     Контакты:
                   </Typography>
                   <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center' }}>
-                    <IconButton
-                      component={Link}
-                      href={dev.contacts.github}
-                      target="_blank"
-                      color="inherit"
-                    >
-                      <GitHubIcon />
-                    </IconButton>
-                    <IconButton
-                      component={Link}
-                      href={dev.contacts.telegram}
-                      target="_blank"
-                      color="inherit"
-                    >
-                      <TelegramIcon />
-                    </IconButton>
-                    <IconButton
-                      component={Link}
-                      href={dev.contacts.linkedin}
-                      target="_blank"
-                      color="inherit"
-                    >
-                      <LinkedInIcon />
-                    </IconButton>
+                    {dev.contacts.github && (
+                      <IconButton
+                        component={Link}
+                        href={dev.contacts.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        color="inherit"
+                      >
+                        <GitHubIcon />
+                      </IconButton>
+                    )}
+                    {dev.contacts.telegram && (
+                      <IconButton
+                        component={Link}
+                        href={dev.contacts.telegram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        color="inherit"
+                      >
+                        <TelegramIcon />
+                      </IconButton>
+                    )}
+                    {dev.contacts.vk && (
+                      <IconButton
+                        component={Link}
+                        href={dev.contacts.vk}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        color="inherit"
+                      >
+                        <LanguageIcon />
+                      </IconButton>
+                    )}
                   </Box>
                 </Box>
               </CardContent>
@@ -137,7 +159,7 @@ const Developers = () => {
 
       <Box sx={{ mt: 6, textAlign: 'center' }}>
         <Typography variant="body2" color="text.secondary">
-          © 2024 Trading Extension. Все права защищены.
+          © 2026 Trading Extension. Все права защищены.
         </Typography>
       </Box>
     </Container>

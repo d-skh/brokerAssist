@@ -1,50 +1,58 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import Layout from './components/Layout/Layout'
-import Pricing from './pages/Pricing/Pricing'
-import Features from './pages/Features/Features'
-import Developers from './pages/Developers/Developers'
-import Installation from './pages/Installation/Installation'
-import Support from './pages/Support/Support'
-import Roadmap from './pages/Roadmap/Roadmap'
-import News from './pages/News/News'
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#0071e3',
-    },
-    secondary: {
-      main: '#dc004e',
-    },
-  },
-  typography: {
-    fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif',
-  },
-})
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { useSelector } from "react-redux";
+import Layout from "./components/Layout/Layout";
+import Pricing from "./pages/Pricing/Pricing";
+import Features from "./pages/Features/Features";
+import Developers from "./pages/Developers/Developers";
+import Installation from "./pages/Installation/Installation";
+import Support from "./pages/Support/Support";
+import Roadmap from "./pages/Roadmap/Roadmap";
+import News from "./pages/News/News";
+import { lightTheme, darkTheme } from "./theme";
+import { Box } from "@mui/material";
 
 function App() {
+  const currentTheme = useSelector((state) => state.app.theme);
+
+  const getTheme = () => {
+    switch (currentTheme) {
+      case "dark":
+        return darkTheme;
+      default:
+        return lightTheme;
+    }
+  };
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={getTheme()}>
       <CssBaseline />
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Features />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/brokerAssist" element={<Features />} />
-            <Route path="/features" element={<Features />} />
-            <Route path="/roadmap" element={<Roadmap />} />
-            <Route path="/developers" element={<Developers />} />
-            <Route path="/installation" element={<Installation />} />
-            <Route path="/support" element={<Support />} />
-            <Route path="/news" element={<News />} />
-          </Routes>
-        </Layout>
-      </Router>
+      <Box
+        sx={{
+          minHeight: "100vh",
+          background: "var(--bg-gradient)",
+          transition: "background 0.3s ease",
+        }}
+      >
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Navigate to="/features" replace />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/features" element={<Features />} />
+              <Route path="/roadmap" element={<Roadmap />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/developers" element={<Developers />} />
+              <Route path="/installation" element={<Installation />} />
+              <Route path="/support" element={<Support />} />
+              <Route path="*" element={<Navigate to="/features" replace />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </Box>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;

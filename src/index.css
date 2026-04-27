@@ -1,5 +1,5 @@
-/* ===== APPLE-STYLE GLOBAL DESIGN ===== */
-/* Все стили применяются автоматически ко всем компонентам */
+/* ===== APPLE-STYLE GLOBAL DESIGN with THEME SUPPORT ===== */
+/* Все стили используют CSS переменные для поддержки тем */
 
 * {
   margin: 0;
@@ -8,16 +8,82 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', 
-    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "Helvetica Neue", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #f5f7fa 0%, #f8f9fc 100%);
-  color: #1d1d1f;
+  color: var(--text-primary);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+  min-height: 100vh;
+}
+
+/* ===== ОБЫЧНЫЙ ТЕКСТ НА СТРАНИЦАХ ===== */
+p,
+span,
+div:not(.MuiPaper-root):not(.MuiCard-root) {
+  color: var(--text-primary);
+}
+
+/* Специально для текста вне карточек */
+.container-text {
+  color: var(--text-primary);
+}
+
+/* Ссылки вне компонентов MUI */
+a:not(.MuiButton-root):not(.MuiLink-root) {
+  color: var(--primary-main);
+}
+
+a:not(.MuiButton-root):not(.MuiLink-root):hover {
+  color: var(--primary-hover);
 }
 
 #root {
   min-height: 100vh;
+  background: var(--bg-gradient);
+  transition: background 0.3s ease;
+}
+
+/* ===== CSS VARIABLES (управляются через тему) ===== */
+:root {
+  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #f8f9fc 100%);
+  --drawer-bg: rgba(255, 255, 255, 0.95);
+  --appbar-bg: rgba(255, 255, 255, 0.95);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --paper-bg: rgba(255, 255, 255, 0.9);
+  --border-color: rgba(0, 0, 0, 0.05);
+  --border-color-light: rgba(255, 255, 255, 0.3);
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --text-gradient: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+  --primary-main: #0071e3;
+  --primary-hover: #0077ed;
+  --primary-light: rgba(0, 113, 227, 0.1);
+  --primary-shadow: rgba(0, 113, 227, 0.2);
+  --secondary-main: #dc004e;
+  --secondary-light: rgba(220, 0, 78, 0.1);
+  --chip-bg: #0071e3;
+  --chip-color: #ffffff;
+  --avatar-gradient: linear-gradient(135deg, #0071e3 0%, #005bb5 100%);
+  --alert-info-bg: rgba(0, 113, 227, 0.1);
+  --alert-info-color: #0071e3;
+  --alert-warning-bg: rgba(255, 149, 0, 0.1);
+  --alert-warning-color: #ff9500;
+  --alert-success-bg: rgba(52, 199, 89, 0.1);
+  --alert-success-color: #34c759;
+  --badge-bg: #ff3b30;
+  --step-active: #0071e3;
+  --step-completed: #34c759;
+  --scrollbar-track: rgba(0, 0, 0, 0.05);
+  --scrollbar-thumb: rgba(0, 0, 0, 0.2);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.3);
+  --hover-bg: rgba(0, 0, 0, 0.05);
+  --selected-bg: rgba(0, 113, 227, 0.1);
+  --selected-color: #0071e3;
 }
 
 /* ===== SCROLLBAR ===== */
@@ -27,26 +93,26 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--scrollbar-track);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--scrollbar-thumb);
   border-radius: 10px;
   transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* ===== MUI DRAWER (Сайдбар) ===== */
 .MuiDrawer-paper {
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: var(--drawer-bg) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border-right: 1px solid rgba(0, 0, 0, 0.05) !important;
+  border-right: 1px solid var(--border-color) !important;
   box-shadow: none !important;
 }
 
@@ -57,13 +123,13 @@ body {
 }
 
 .MuiDrawer-paper .MuiListItemButton-root:hover {
-  background: rgba(0, 0, 0, 0.05) !important;
+  background: var(--hover-bg) !important;
   transform: translateX(4px);
 }
 
 .MuiDrawer-paper .MuiListItemButton-root.Mui-selected {
-  background: rgba(0, 113, 227, 0.1) !important;
-  color: #0071e3 !important;
+  background: var(--selected-bg) !important;
+  color: var(--selected-color) !important;
 }
 
 .MuiDrawer-paper .MuiListItemIcon-root {
@@ -73,23 +139,25 @@ body {
 
 /* ===== MUI APP BAR (Тулкит) ===== */
 .MuiAppBar-root {
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: var(--appbar-bg) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02) !important;
-  color: #1d1d1f !important;
+  box-shadow:
+    0 1px 0 var(--border-color),
+    0 1px 2px rgba(0, 0, 0, 0.02) !important;
+  color: var(--text-primary) !important;
 }
 
 .MuiAppBar-root .MuiTypography-root {
   font-weight: 600 !important;
-  background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+  background: var(--text-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .MuiAppBar-root .MuiButton-root {
-  color: #1d1d1f !important;
+  color: var(--text-primary) !important;
   border-radius: 12px !important;
   text-transform: none !important;
   font-weight: 500 !important;
@@ -97,27 +165,31 @@ body {
 }
 
 .MuiAppBar-root .MuiButton-root:hover {
-  background: rgba(0, 0, 0, 0.05) !important;
+  background: var(--hover-bg) !important;
 }
 
 .MuiAppBar-root .MuiIconButton-root {
-  color: #1d1d1f !important;
+  color: var(--text-primary) !important;
 }
 
 /* ===== MUI CARDS ===== */
 .MuiCard-root {
-  background: rgba(255, 255, 255, 0.9) !important;
+  background: var(--card-bg) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   border-radius: 20px !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.03) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border: 1px solid var(--border-color-light) !important;
 }
 
 .MuiCard-root:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.05) !important;
 }
 
 .MuiCardContent-root {
@@ -131,80 +203,133 @@ body {
   font-weight: 500 !important;
   font-size: 17px !important;
   padding: 8px 24px !important;
-  transition: all 0.2s ease !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease,
+    color 0.2s ease !important;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .MuiButton-contained {
-  background: #0071e3 !important;
-  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2) !important;
+  background: var(--primary-main) !important;
+  box-shadow: 0 2px 8px var(--primary-shadow) !important;
+  color: #ffffff !important;
 }
 
 .MuiButton-contained:hover {
-  background: #0077ed !important;
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3) !important;
+  background: var(--primary-hover) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px var(--primary-shadow) !important;
 }
 
 .MuiButton-outlined {
-  border-color: #0071e3 !important;
-  color: #0071e3 !important;
+  border-color: var(--primary-main) !important;
+  color: var(--primary-main) !important;
+  box-shadow: 0 0 0 rgba(0, 113, 227, 0);
 }
 
 .MuiButton-outlined:hover {
-  background: rgba(0, 113, 227, 0.05) !important;
-  transform: scale(1.02);
+  background: var(--primary-light) !important;
+  color: var(--primary-main) !important;
+  border-color: var(--primary-main) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px var(--primary-shadow) !important;
 }
 
 .MuiButton-root:active {
   transform: scale(0.98);
 }
 
+.MuiButton-contained .MuiButton-startIcon,
+.MuiButton-contained .MuiButton-endIcon,
+.MuiButton-contained .MuiButton-startIcon .MuiSvgIcon-root,
+.MuiButton-contained .MuiButton-endIcon .MuiSvgIcon-root {
+  color: #ffffff !important;
+}
+
+.MuiButton-outlined .MuiButton-startIcon,
+.MuiButton-outlined .MuiButton-endIcon,
+.MuiButton-outlined .MuiButton-startIcon .MuiSvgIcon-root,
+.MuiButton-outlined .MuiButton-endIcon .MuiSvgIcon-root {
+  color: var(--primary-main) !important;
+}
+
+.MuiButton-root::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -140%;
+  width: 50%;
+  height: 140%;
+  transform: skewX(-20deg);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.38) 45%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  animation: buttonShineSweep 7.2s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+}
+
+.MuiButton-root > * {
+  position: relative;
+  z-index: 2;
+}
+
 /* ===== MUI TEXT FIELD ===== */
 .MuiTextField-root .MuiOutlinedInput-root {
   border-radius: 12px !important;
-  background: rgba(255, 255, 255, 0.9) !important;
+  background: var(--card-bg) !important;
   transition: all 0.2s ease !important;
 }
 
-.MuiTextField-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-  border-color: rgba(0, 113, 227, 0.5) !important;
+.MuiTextField-root
+  .MuiOutlinedInput-root:hover
+  .MuiOutlinedInput-notchedOutline {
+  border-color: var(--primary-main) !important;
+  opacity: 0.5;
 }
 
-.MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: #0071e3 !important;
+.MuiTextField-root
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: var(--primary-main) !important;
   border-width: 1px !important;
-  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1) !important;
+  box-shadow: 0 0 0 4px var(--primary-light) !important;
 }
 
 .MuiInputLabel-root.Mui-focused {
-  color: #0071e3 !important;
+  color: var(--primary-main) !important;
 }
 
 /* ===== MUI CHIPS ===== */
 .MuiChip-root {
   border-radius: 20px !important;
-  background: rgba(0, 0, 0, 0.05) !important;
+  background: var(--hover-bg) !important;
   font-weight: 500 !important;
 }
 
 .MuiChip-root.MuiChip-colorPrimary {
-  background: rgba(0, 113, 227, 0.1) !important;
-  color: #0071e3 !important;
+  background: var(--primary-light) !important;
+  color: var(--primary-main) !important;
 }
 
 .MuiChip-root.MuiChip-colorSecondary {
-  background: rgba(220, 0, 78, 0.1) !important;
-  color: #dc004e !important;
+  background: var(--secondary-light) !important;
+  color: var(--secondary-main) !important;
 }
 
 /* ===== MUI PAPER ===== */
 .MuiPaper-root {
-  background: rgba(255, 255, 255, 0.9) !important;
+  background: var(--paper-bg) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   border-radius: 20px !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border: 1px solid var(--border-color-light) !important;
 }
 
 /* ===== MUI LIST ===== */
@@ -219,86 +344,86 @@ body {
 }
 
 .MuiListItemButton-root:hover {
-  background: rgba(0, 0, 0, 0.05) !important;
+  background: var(--hover-bg) !important;
 }
 
 /* ===== MUI TYPOGRAPHY ===== */
-.MuiTypography-h1, 
-.MuiTypography-h2, 
+.MuiTypography-h1,
+.MuiTypography-h2,
 .MuiTypography-h3 {
   font-weight: 600 !important;
   letter-spacing: -0.003em !important;
-  background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+  background: var(--text-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.MuiTypography-h4, 
-.MuiTypography-h5, 
+.MuiTypography-h4,
+.MuiTypography-h5,
 .MuiTypography-h6 {
   font-weight: 600 !important;
   letter-spacing: -0.002em !important;
-  color: #1d1d1f !important;
+  color: var(--text-primary) !important;
 }
 
 .MuiTypography-body1 {
   font-size: 17px !important;
   line-height: 1.47059 !important;
-  color: #1d1d1f !important;
+  color: var(--text-primary) !important;
 }
 
 .MuiTypography-body2 {
   font-size: 14px !important;
   line-height: 1.42859 !important;
-  color: #6e6e73 !important;
+  color: var(--text-secondary) !important;
 }
 
 /* ===== MUI DIVIDER ===== */
 .MuiDivider-root {
-  background: rgba(0, 0, 0, 0.05) !important;
+  background: var(--border-color) !important;
 }
 
 /* ===== MUI ALERT ===== */
 .MuiAlert-root {
   border-radius: 16px !important;
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: var(--paper-bg) !important;
   backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid var(--border-color) !important;
 }
 
 .MuiAlert-standardInfo {
-  background: rgba(0, 113, 227, 0.1) !important;
-  color: #0071e3 !important;
+  background: var(--alert-info-bg) !important;
+  color: var(--alert-info-color) !important;
 }
 
 .MuiAlert-standardWarning {
-  background: rgba(255, 149, 0, 0.1) !important;
-  color: #ff9500 !important;
+  background: var(--alert-warning-bg) !important;
+  color: var(--alert-warning-color) !important;
 }
 
 .MuiAlert-standardSuccess {
-  background: rgba(52, 199, 89, 0.1) !important;
-  color: #34c759 !important;
+  background: var(--alert-success-bg) !important;
+  color: var(--alert-success-color) !important;
 }
 
 /* ===== MUI STEPPER ===== */
 .MuiStepLabel-root .MuiStepLabel-label {
   font-weight: 500 !important;
-  color: #1d1d1f !important;
+  color: var(--text-primary) !important;
 }
 
 .MuiStepIcon-root.MuiStepIcon-active {
-  color: #0071e3 !important;
+  color: var(--step-active) !important;
 }
 
 .MuiStepIcon-root.MuiStepIcon-completed {
-  color: #34c759 !important;
+  color: var(--step-completed) !important;
 }
 
 /* ===== MUI BADGE ===== */
 .MuiBadge-badge {
-  background: #ff3b30 !important;
+  background: var(--badge-bg) !important;
   color: white !important;
 }
 
@@ -309,14 +434,14 @@ body {
 }
 
 .MuiIconButton-root:hover {
-  background: rgba(0, 0, 0, 0.05) !important;
+  background: var(--hover-bg) !important;
   transform: scale(1.05);
 }
 
 /* ===== MUI AVATAR ===== */
 .MuiAvatar-root {
-  background: linear-gradient(135deg, #0071e3 0%, #005bb5 100%) !important;
-  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2) !important;
+  background: var(--avatar-gradient) !important;
+  box-shadow: 0 2px 8px var(--primary-shadow) !important;
 }
 
 /* ===== MUI CONTAINER ===== */
@@ -345,37 +470,68 @@ body {
   }
 }
 
+@keyframes buttonShineSweep {
+  0%,
+  58% {
+    left: -140%;
+    opacity: 0;
+  }
+  64% {
+    opacity: 1;
+  }
+  84% {
+    left: 155%;
+    opacity: 1;
+  }
+  100% {
+    left: 155%;
+    opacity: 0;
+  }
+}
+
 /* ===== GRID ITEMS ANIMATION ===== */
 .MuiGrid-item {
   animation: fadeInUp 0.5s ease-out;
   animation-fill-mode: backwards;
 }
 
-.MuiGrid-item:nth-child(1) { animation-delay: 0.05s; }
-.MuiGrid-item:nth-child(2) { animation-delay: 0.1s; }
-.MuiGrid-item:nth-child(3) { animation-delay: 0.15s; }
-.MuiGrid-item:nth-child(4) { animation-delay: 0.2s; }
-.MuiGrid-item:nth-child(5) { animation-delay: 0.25s; }
-.MuiGrid-item:nth-child(6) { animation-delay: 0.3s; }
+.MuiGrid-item:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.MuiGrid-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.MuiGrid-item:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.MuiGrid-item:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.MuiGrid-item:nth-child(5) {
+  animation-delay: 0.25s;
+}
+.MuiGrid-item:nth-child(6) {
+  animation-delay: 0.3s;
+}
 
 /* ===== LINK STYLES ===== */
 a {
   text-decoration: none;
-  color: #0071e3;
+  color: var(--primary-main);
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #005bb5;
+  color: var(--primary-hover);
 }
 
 /* ===== SELECTION STYLES ===== */
 ::selection {
-  background: rgba(0, 113, 227, 0.2);
-  color: #0071e3;
+  background: var(--primary-light);
+  color: var(--primary-main);
 }
 
-/* Content spacing */
+/* ===== CONTENT SPACING ===== */
 main {
   padding: 32px;
 }

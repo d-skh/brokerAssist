@@ -26,6 +26,7 @@ const MobileDrawer = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const sidebarOpen = useSelector((state) => state.app.sidebarOpen)
+  const currentTheme = useSelector((state) => state.app.theme)
   const theme = useTheme()
 
   const handleNavigation = (path) => {
@@ -53,7 +54,15 @@ const MobileDrawer = () => {
     >
       <Box sx={{ p: 2, borderBottom: '1px solid rgba(0,0,0,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <img src="/vite.svg" alt="logo" style={{ width: 32, height: 32 }} />
+          <img
+            src="https://raw.githubusercontent.com/d-skh/brokerAssist/9ca3e43792d682ddd735b204d3121470ff02e4fd/public/vite.svg"
+            alt="logo"
+            style={{
+              width: 32,
+              height: 32,
+              filter: currentTheme === 'dark' ? 'brightness(0) invert(1)' : 'none',
+            }}
+          />
           <Typography variant="h6" sx={{ fontWeight: 600 }}>
             Trading Extension
           </Typography>

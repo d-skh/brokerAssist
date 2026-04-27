@@ -21,6 +21,7 @@ import "./Features.css";
 const brokers = [
   { name: "Т-Банк", color: "#ffdd2d", textColor: "#1d1d1f" },
   { name: "Альфа-Банк", color: "#ef3124", textColor: "#ffffff" },
+  { name: "БКС", color: "#0047ff", textColor: "#ffffff" },
   { name: "Алор", color: "#00a651", textColor: "#ffffff" },
   { name: "Финам", color: "#57a8ff", textColor: "#ffffff" },
 ];

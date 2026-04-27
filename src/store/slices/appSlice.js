@@ -1,10 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const getInitialTheme = () => {
+  const savedTheme = localStorage.getItem('app_theme')
+  return savedTheme === 'dark' ? 'dark' : 'light'
+}
+
 const initialState = {
-  sidebarOpen: false, // по умолчанию закрыт на всех устройствах
+  sidebarOpen: false,
   currentPage: 'features',
   user: null,
   notifications: [],
+  theme: getInitialTheme(), // 'light', 'dark'
 }
 
 const appSlice = createSlice({
@@ -29,6 +35,11 @@ const appSlice = createSlice({
     clearNotifications: (state) => {
       state.notifications = []
     },
+    setTheme: (state, action) => {
+      const nextTheme = action.payload === 'dark' ? 'dark' : 'light'
+      state.theme = nextTheme
+      localStorage.setItem('app_theme', nextTheme)
+    },
   },
 })
 
@@ -39,6 +50,7 @@ export const {
   setUser,
   addNotification,
   clearNotifications,
+  setTheme,
 } = appSlice.actions
 
 export default appSlice.reducer

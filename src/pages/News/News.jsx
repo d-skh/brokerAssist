@@ -152,6 +152,21 @@ const News = () => {
     });
   };
 
+  const tickerChipSx = {
+    bgcolor: "var(--chip-bg) !important",
+    color: "var(--chip-color) !important",
+    fontWeight: 600,
+    borderRadius: "12px",
+    height: "24px",
+    fontSize: "0.7rem",
+    "& .MuiChip-label": {
+      px: 1,
+      py: 0,
+      color: "var(--chip-color) !important",
+      fontWeight: 600,
+    },
+  };
+
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <Typography
@@ -235,7 +250,13 @@ const News = () => {
               fullWidth
               variant="contained"
               onClick={() => saveApiKeys(apiKey, apiSecret)}
-              sx={{ height: "40px" }}
+              sx={{
+                height: "40px",
+                bgcolor: "var(--primary-main)",
+                "&:hover": {
+                  bgcolor: "var(--primary-hover)",
+                },
+              }}
             >
               Сохранить
             </Button>
@@ -258,11 +279,11 @@ const News = () => {
             onClick={useDefaultKeys}
             size="small"
             sx={{
-              borderColor: "#0071e3",
-              color: "#0071e3",
+              borderColor: "var(--primary-main)",
+              color: "var(--primary-main)",
               "&:hover": {
-                borderColor: "#005bb5",
-                bgcolor: "rgba(0,113,227,0.05)",
+                borderColor: "var(--primary-hover)",
+                bgcolor: "var(--primary-light)",
               },
             }}
           >
@@ -325,32 +346,14 @@ const News = () => {
                             key={idx}
                             label={sym}
                             size="small"
-                            sx={{
-                              bgcolor: "#0071e3 !important",
-                              color: "#ffffff !important",
-                              fontWeight: 600,
-                              borderRadius: "12px",
-                              height: "24px",
-                              fontSize: "0.7rem",
-                              "& .MuiChip-label": {
-                                px: 1,
-                                py: 0,
-                                color: "#ffffff !important",
-                              },
-                            }}
+                            sx={tickerChipSx}
                           />
                         ))}
                         {item.symbols.length > 3 && (
                           <Chip
                             label={`+${item.symbols.length - 3}`}
                             size="small"
-                            sx={{
-                              bgcolor: "rgba(0,113,227,0.1)",
-                              color: "#0071e3",
-                              fontWeight: 500,
-                              borderRadius: "12px",
-                              height: "24px",
-                            }}
+                            sx={tickerChipSx}
                           />
                         )}
                       </Box>

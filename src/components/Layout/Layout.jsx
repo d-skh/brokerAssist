@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
           marginLeft: !isMobile ? (sidebarOpen ? '292px' : '92px') : 0,
           marginTop: isMobile ? '64px' : 0,
           transition: 'margin-left 0.3s ease',
-          backgroundColor: '#f5f7fa',
+          background: 'transparent',
           minHeight: '100vh',
           p: { xs: 2, md: 3 },
         }}
